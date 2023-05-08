@@ -1,0 +1,1 @@
+# bigquery-ethereum-mageai-etl-minikube
