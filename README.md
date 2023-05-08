@@ -25,12 +25,12 @@ Following tools I used and deployed it via Helm Charts to minikube
 MageAi Pipelines reads data from Good BigQuery public dataset `bigquery-public-data.crypto_ethereum` and store data to Postgresql database of `ethereum` schema. 
 ### Project Structure
 ```
-- mageai  # helm chart values configuration 
+- mageai                   # helm chart values configuration 
   |__ values.yaml
-- postgresql  # helm chart values configuration and ethereum DDL for Table Creations
+- postgresql               # helm chart values configuration and ethereum DDL for Table Creations
    |__ table_script.sql
    |__ values.yaml
-- projects # mount directory for minikube  
+- projects                 # mount directory for minikube  
    |__mage_project         # Mounted MageAI Directory Structure with all source code to minikube
       |__default_repo      # Mageai default project with data loaders, pipelines and configuration files. Please check this directory for in-depth pipeline code.
 - secrets
@@ -128,6 +128,19 @@ First I try with MageAi Backfill feature, but this will run the backfill for eac
 Hence, to extract data for each date from `token_transfers` took ~4-5 mins and utilize all available container resources. The backfill is only possible to run sequentially from state_date to end_date one by one.
 
 This sequential execution is developed as a [MAGEAI Trigger Pipeline](https://docs.mage.ai/orchestration/triggers/trigger-pipeline) in [backfill_daily_ethereum_token_transfers](projects%2Fmage_project%2Fdefault_repo%2Fpipelines%2Fbackfill_daily_ethereum_token_transfers) 
+
+The start_date and end_date of backfill can be easily configurable via [triggers.yaml](projects%2Fmage_project%2Fdefault_repo%2Fpipelines%2Fbackfill_daily_ethereum_token_transfers%2Ftriggers.yaml) file. Be default it is set as `start_date= 023-05-01` and `end_date=2023-05-7`
+ 
+```
+triggers:
+- name: backfill_token_transfer
+  schedule_type: time
+  schedule_interval: "@once"
+  start_time: 2023-05-01
+  status: inactive
+  variables: {'start_date': '2023-05-01', 'end_date': '2023-05-7'}
+
+```
 
 #### Triggers:
 The Tokens pipeline triggers automatically everyday. It's configuration defined in [triggers.yaml](projects%2Fmage_project%2Fdefault_repo%2Fpipelines%2Fdaily_ethereum_token_transfers%2Ftriggers.yaml)
