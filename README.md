@@ -23,8 +23,21 @@ Following tools I used and deployed it via Helm Charts to minikube
 
 
 MageAi Pipelines reads data from Good BigQuery public dataset `bigquery-public-data.crypto_ethereum` and store data to Postgresql database of `ethereum` schema. 
-
-### Pre-Requesities
+### Project Structure
+```
+- mageai  # helm chart values configuration 
+  |__ values.yaml
+- postgresql  # helm chart values configuration and ethereum DDL for Table Creations
+   |__ table_script.sql
+   |__ values.yaml
+- projects # mount directory for minikube  
+   |__mage_project         # Mounted MageAI Directory Structure with all source code to minikube
+      |__default_repo      # Mageai default project with data loaders, pipelines and configuration files. Please check this directory for in-depth pipeline code.
+- secrets
+   |__ gcp_bg_user.json    # Google BigQuery credentials json. Don't change this file just copy the json content 
+- Makefile                 # Contains scripts to deploy and install helm charts
+```
+### Pre-Requisites
 
 1. To run this project, the expectation is your local system has `docker` and `make` installed.
 2. Google BigQuery Setup: You need to have GCP (Google Cloud Platform) and you need to create a  Service Account with access to `BigQuery Data Viewer`, `BigQuery Job User` and `BigQuery Session User`. Once you created a service account you need to download the GCP BIgQuery authentication key in json format. 
@@ -49,7 +62,7 @@ Now you are all set to run this following command.
 ```
 
 
-This will start your minikube docker conatiner which mount your projects 'projects/' directory and save Mageai Pipeline code.
+This will start your minikube docker container which mount your projects 'projects/' directory and save Mageai Pipeline code.
 
 
 Now start the `mageai` and `postgres` services via helm chart run this following command.
