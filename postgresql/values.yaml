@@ -1,0 +1,17 @@
+global:
+  postgresql:
+      auth:
+        username: admin
+        password: admin
+
+primary:
+  initdb:
+#    scripts:
+#      00_init_extensions.sql: |
+#        CREATE SCHEMA ETHEREUM8;
+
+    scriptsConfigMap: db-schema
+
+config:
+  datasource:
+    host: host.minikube.internal

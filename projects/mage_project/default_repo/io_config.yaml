@@ -1,0 +1,12 @@
+version: 0.1.1
+default:
+  # Default profile created for data IO access.
+  # Add your credentials for the source you use, and delete the rest.
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/var/secrets/google/key.json"
+  GOOGLE_LOCATION: US # Optional
+  POSTGRES_CONNECT_TIMEOUT: 10
+  POSTGRES_DBNAME: postgres
+  POSTGRES_SCHEMA: ethereum # Optional
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+  POSTGRES_HOST: "postgresql"

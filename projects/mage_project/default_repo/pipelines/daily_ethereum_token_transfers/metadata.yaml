@@ -1,0 +1,41 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: null
+  downstream_blocks:
+  - export_token_transfers
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: loader_tokens_transfer
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: loader_tokens_transfer
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: null
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_token_transfers
+  status: updated
+  type: data_exporter
+  upstream_blocks:
+  - loader_tokens_transfer
+  uuid: export_token_transfers
+callbacks: []
+data_integration: null
+description: null
+executor_count: 1
+extensions: {}
+name: daily_ethereum_token_transfers
+type: python
+updated_at: '2023-05-08 15:20:25'
+uuid: daily_ethereum_token_transfers
+widgets: []

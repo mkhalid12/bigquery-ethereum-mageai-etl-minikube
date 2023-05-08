@@ -1,0 +1,57 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - transform_tokens
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: loader_ethereum_tokens
+  status: updated
+  type: data_loader
+  upstream_blocks: []
+  uuid: loader_ethereum_tokens
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - export_tokens
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: transform_tokens
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - loader_ethereum_tokens
+  uuid: transform_tokens
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_tokens
+  status: updated
+  type: data_exporter
+  upstream_blocks:
+  - transform_tokens
+  uuid: export_tokens
+callbacks: []
+data_integration: null
+description: null
+executor_count: 1
+extensions: {}
+name: daily_ethereum_tokens
+type: python
+updated_at: '2023-05-08 17:49:57'
+uuid: daily_ethereum_tokens
+variables:
+  is_tokens_first_run: 'True'
+  tokens_start_date: '2016-01-10 00:00:00.0'
+widgets: []

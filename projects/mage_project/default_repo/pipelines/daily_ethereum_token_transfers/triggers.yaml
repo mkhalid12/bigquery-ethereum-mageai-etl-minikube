@@ -1,0 +1,6 @@
+triggers:
+- name: daily_token_transfers_etl
+  schedule_type: time
+  schedule_interval: "@daily"
+  start_time: 2023-05-01
+  status: inactive
