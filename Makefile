@@ -9,13 +9,13 @@ PROJECT_DIRECTORY={full/path/to/your/project/directory}/mage-ai/projects/
 check-docker:
 	docker version --format '{{.Server.Version}}'
 
-setup-k8:
-	brew install minikube
-	brew install kubectl
-	brew install helm
+setup-k8: check-docker
+	arch -arm64 brew install minikube
+	arch -arm64 brew install kubectl
+	arch -arm64 brew install helm
 	minikube version
 	kubectl version --client
-	minikube start --mount=true  --mount-string=$(PROJECT_DIRECTORY):/home/projects/  --ports=5432:5432,6789:6789
+	minikube start --mount=true --driver=docker  --mount-string=$(PROJECT_DIRECTORY):/home/projects/  --ports=5432:5432,6789:6789
 
 bootstrap:
 	helm repo add $(HELM_REPO_MAGE) https://mkhalid12.github.io/helm-charts/
