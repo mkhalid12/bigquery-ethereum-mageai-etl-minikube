@@ -4,7 +4,7 @@ NAMESPACE=mk-mageai
 HELM_REPO_MAGE=mk-mageai
 HELM_REPO_PG=bitnami
 APP_NAME=mageai
-PROJECT_DIRECTORY={full/path/to/your/project/directory}/mage-ai/projects/
+PROJECT_DIRECTORY={full/path/to/your/project/directory}/projects/
 
 check-docker:
 	docker version --format '{{.Server.Version}}'
